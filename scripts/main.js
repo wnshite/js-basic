@@ -174,3 +174,35 @@ myInput.addEventListener('keydown', function(e){  // -> 키보드가 눌렸는�
     // console.log(e)
     console.log(myInput.value) // -> 키보드로 작성하는 그대로 계속해서 출력됌
 }) 
+
+
+// 비동기
+console.log('hi')
+setTimeout(function(){console.log('1234')}, 1000)
+console.log('bye')
+
+// request
+const URL = 'https://jsonplaceholder.typicode.com/todos/1'
+
+// 비동기 처리 방법 1 (promise)
+// let response = fetch(URL).then()
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+
+// 비동기 처리 방법 2 (async await)
+async function fetchTodo(url){
+    let res = await fetch(url)
+    let result = await res.json()
+    console.log(result)
+    // return result 
+}
+console.log(fetchTodo(URL))
+
+let liArray = document.querySelectorAll('li')
+// console.log(liArray)  // -> 이 결과 웹의 관리자 페이지에서 "NodeList(3) [li, li, li]" 등장.
+
+liArray.forEach(function(item){  // -> li 태그를 하나하나 빼서 function에 각각 적용시킬 것이다.
+    item.addEventListener('click', function(e){
+        console.log(e.target)  // -> 정확한 타켓 설정.
+    })
+})
